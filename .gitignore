@@ -1,0 +1,16 @@
+# Chặn thư mục dữ liệu
+dataset/
+
+# Chặn môi trường ảo
+env/
+venv/
+
+# Chặn các file rác của hệ thống và IDE
+__pycache__/
+.vscode/
+*.pyc
+.DS_Store
+
+# Chặn file trọng số model (vì thường rất nặng)
+*.pth
+*.h5
