@@ -1,27 +1,42 @@
+import os
+import sys
 from pymongo import MongoClient
 import certifi
+from dotenv import load_dotenv
 
-# URI kết nối của bạn
-uri = "mongodb+srv://tuanhungnguyenvan01042006_db_user:oCMPtfbVsP7T7LTs@emoaicluster.fj0zt5h.mongodb.net/?appName=EmoAICluster"
+# Load biến môi trường từ file .env
+load_dotenv()
 
+# Lấy URI kết nối MongoDB
+uri = os.getenv("MONGO_URI")
+
+if not uri:
+    print("❌ MONGO_URI chưa được cấu hình trong file .env!")
+    print("   Vui lòng tạo file .env với nội dung: MONGO_URI=mongodb+srv://...")
+    sys.exit(1)
+
+# Khởi tạo kết nối MongoDB với chứng chỉ SSL
+client = MongoClient(
+    uri,
+    tlsCAFile=certifi.where(),
+    serverSelectionTimeoutMS=10000,
+    connectTimeoutMS=10000,
+    socketTimeoutMS=20000,
+)
+
+# Kiểm tra kết nối
 try:
-    # 1. Khởi tạo kết nối với chứng chỉ bảo mật và timeout 5 giây
-    client = MongoClient(uri, tlsCAFile=certifi.where(), serverSelectionTimeoutMS=5000)
-    
-    # 2. Kiểm tra kết nối thật sự bằng lệnh ping
-    client.admin.command('ping')
+    client.admin.command("ping")
     print("✅ Kết nối thành công tới MongoDB Atlas!")
-
-    # 3. Khởi tạo Database tên là 'emotion_ai_db'
-    db = client["emotion_ai_db"]
-
-    # 4. Khởi tạo 3 Collection lần lượt là users, emotion, feedback
-    users_collection = db["users"]
-    emotion_collection = db["emotion"]
-    feedback_collection = db["feedback"]
-
-    print(f" Đã khởi tạo database: {db.name}")
-    print(f" Đã sẵn sàng 3 collections: {['users', 'emotion', 'feedback']}")
-
 except Exception as e:
-    print(f" Kết nối thất bại! Lý do: {e}")
+    print(f"❌ Không thể kết nối MongoDB Atlas: {e}")
+    sys.exit(1)
+
+# Khởi tạo Database và Collections
+db = client["emotion_ai_db"]
+users_collection = db["users"]
+emotion_collection = db["emotion"]
+feedback_collection = db["feedback"]
+
+print(f"📦 Database: {db.name}")
+print(f"📂 Collections: users, emotion, feedback")

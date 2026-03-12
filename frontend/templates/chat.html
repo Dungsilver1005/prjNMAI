@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MindEase AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="icon">
+                    <i class="ph-fill ph-brain"></i>
+                </div>
+                <div class="sidebar-logo-text">
+                    <h1>MindEase AI</h1>
+                    <p>Mental Well-being</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <i class="ph ph-squares-four"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ph ph-calendar-check"></i>
+                    Daily Check-in
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ph ph-smiley"></i>
+                    Mood History
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ph ph-books"></i>
+                    Resources
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="ph ph-gear"></i>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-title">Main Dashboard</div>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" placeholder="Search sessions...">
+                    </div>
+                    <button class="icon-btn"><i class="ph ph-bell"></i></button>
+                    <a href="/logout" title="Logout">
+                        <button class="icon-btn"><i class="ph ph-user-circle"></i></button>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Body -->
+            <div class="dashboard-body">
+                <div class="welcome-sec">
+                    <h2>Welcome back, {{ username }}</h2>
+                    <p>Ready for your daily emotional resonance check?</p>
+                </div>
+
+                <div class="grid-layout">
+                    <!-- Left Column -->
+                    <div class="left-col">
+                        <div class="card" style="padding-bottom: 24px;">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="ph-fill ph-video-camera" style="color: var(--primary);"></i>
+                                    Webcam Emotion Detection
+                                </div>
+                                <div class="status-badge">LIVE ANALYSIS</div>
+                            </div>
+
+                            <!-- Webcam Placeholder -->
+                            <div class="webcam-container">
+                                <!-- Premium stock image mimicking the mockup design -->
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop"
+                                    class="webcam-feed" alt="Webcam Feed Simulation">
+
+                                <div class="webcam-overlay">
+                                    <div class="detection-label">CURRENT DETECTION</div>
+                                    <div class="detection-result">
+                                        <i class="ph-fill ph-smiley"></i>
+                                        Happy (84%)
+                                    </div>
+                                </div>
+
+                                <div class="webcam-controls">
+                                    <button class="ctrl-btn"><i class="ph ph-microphone"></i></button>
+                                    <button class="ctrl-btn"><i class="ph ph-camera"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Emotion Stats -->
+                            <div class="emotion-stats">
+                                <!-- Happy -->
+                                <div class="stat-box">
+                                    <div class="stat-head icon-happy">
+                                        <i class="ph-fill ph-smiley"></i>
+                                        Happy
+                                    </div>
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-bar" style="width: 84%; background: var(--success);"></div>
+                                    </div>
+                                    <div class="stat-val">84%</div>
+                                </div>
+                                <!-- Sad -->
+                                <div class="stat-box">
+                                    <div class="stat-head icon-sad">
+                                        <i class="ph-fill ph-smiley-sad"></i>
+                                        Sad
+                                    </div>
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-bar" style="width: 12%; background: var(--primary);"></div>
+                                    </div>
+                                    <div class="stat-val">12%</div>
+                                </div>
+                                <!-- Angry -->
+                                <div class="stat-box">
+                                    <div class="stat-head icon-angry">
+                                        <i class="ph-fill ph-smiley-angry"></i>
+                                        Angry
+                                    </div>
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-bar" style="width: 3%; background: var(--danger);"></div>
+                                    </div>
+                                    <div class="stat-val">3%</div>
+                                </div>
+                                <!-- Neutral -->
+                                <div class="stat-box">
+                                    <div class="stat-head icon-neutral">
+                                        <i class="ph-fill ph-smiley-meh"></i>
+                                        Neutral
+                                    </div>
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-bar" style="width: 25%; background: var(--neutral);"></div>
+                                    </div>
+                                    <div class="stat-val">25%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="right-col">
+                        <!-- Session Progress -->
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom: 24px;">Session Progress</div>
+                            <div class="goal-wrap">
+                                <div class="circle-chart">
+                                    65%
+                                    <div class="circle-chart-bg"></div>
+                                </div>
+                                <div class="goal-text">
+                                    <h4>Daily Goal</h4>
+                                    <p>12 of 20 minutes completed</p>
+                                </div>
+                            </div>
+                            <button class="btn" style="width: 100%; background: #0F172A; color: white;">Complete
+                                Check-in</button>
+                        </div>
+
+                        <!-- Recommended Exercise -->
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom: 20px;">Recommended Exercise</div>
+                            <div class="exercise-box">
+                                <div class="ex-icon">
+                                    <i class="ph ph-wind"></i>
+                                </div>
+                                <div class="ex-info">
+                                    <h4>Box Breathing</h4>
+                                    <p>5 Minutes • Stress Relief</p>
+                                    <a href="#" class="ex-link">START EXERCISE <i class="ph ph-caret-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Weekly Mood -->
+                        <div class="card">
+                            <div class="chart-header">
+                                <div class="card-title">Weekly Mood</div>
+                                <a href="#" class="chart-link">View Details</a>
+                            </div>
+                            <div class="chart-wrap">
+                                <!-- Simulated Chart Columns -->
+                                <div class="bar-col">
+                                    <div class="bar" style="height: 30%;"></div>
+                                    <span class="bar-lbl">MON</span>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="bar" style="height: 50%;"></div>
+                                    <span class="bar-lbl">TUE</span>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="bar" style="height: 60%;"></div>
+                                    <span class="bar-lbl">WED</span>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="bar" style="height: 90%;"></div>
+                                    <span class="bar-lbl">THU</span>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="bar" style="height: 55%;"></div>
+                                    <span class="bar-lbl">FRI</span>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="bar" style="height: 20%;"></div>
+                                    <span class="bar-lbl">SAT</span>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="bar" style="height: 45%;"></div>
+                                    <span class="bar-lbl">SUN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>
